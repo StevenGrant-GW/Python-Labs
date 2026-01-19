@@ -41,38 +41,6 @@
 # 
 # Good luck!
 #-----------------------------------------------------------------------------
-
-# -----------------------------------------------------------------------------
-# IMAGE LAB - IMAGE COLLAGE
-# 
-# Use your new knowledge of drawing and colours with Pygame to make this a full screen of a plaid pattern.
-# 
-# Lab Requirements:
-# LEVEL 3
-# Use at least 3 different images to create a collage
-# You can repeat the same images must use other commands to change the look (example, tint)
-
-# LEVEL 4
-# Everything listed in level 3 
-# Create a scene with images
-
-# LEVEL 4+
-# Everything listed in level 4
-# Randomize or animate something
-
-# Recommended Lessons:
-# P5.js intro
-# P5.js drawing
-# P5.js colour
-# 
-# Challenge Difficulty:**
-# 
-# Remember the purpose of this challenge is to help you practice Pygame coding not to find code online or copy from your friends! This challenge will be checked for Plagiarism.
-# 
-# Upload your code to githun when finished
-# 
-# Good luck!
-#-----------------------------------------------------------------------------
 import pygame
 pygame.init()
 
@@ -82,6 +50,18 @@ windowWidth = 500
 windowHeight = 500
 window = pygame.display.set_mode((windowWidth, windowHeight))
 clock = pygame.time.Clock()  #will allow us to set framerate
+#Load Fonts
+    #These 3 are loading base system fonts and giving them traits like bold and italic
+font1 = pygame.font.SysFont("arial", 40, bold=True)
+font2 = pygame.font.SysFont("comicsansms", 50)
+font3 = pygame.font.SysFont("timesnewroman", 60, italic=True)
+    #This is for loading the custom downloaded font
+font4 = pygame.font.Font("Fonts/Note Font.ttf", 40)
+    #colors for all the text
+RED = (255, 60, 60) 
+BLUE = (60, 120, 255) 
+GREEN = (60, 200, 100) 
+YELLOW = (255, 230, 80)
 
 # *********GAME LOOP**********
 while True:
@@ -89,22 +69,32 @@ while True:
     ev = pygame.event.poll()    # Look for any event
     if ev.type == pygame.QUIT:  # windowow close button clicked?
         break                   #   ... leave game loop
-   
-    #PUT YOUR MOUSE/KEYBOARD EVENTS HERE
-   
-    # *********GAME LOGIC**********
-    
-    #PUT YOUR GAME LOGIN HERE FOR EACH GAMESTATE
-    
+
     # *********DRAW THE FRAME**********
 
-    #PUT YOUR DRAWING, IMAGE PLACEMENT, BLIT ETC.. COMMANDS HERE FOR EACH GAMESTATE'''
+    #generates a light background for the words
+    window.fill((240, 240, 240))
 
+    #Messages for the Ransom notes
+    text1 = font1.render("test message", True, RED)
+    text2 = font2.render("test message", True, BLUE)
+    text3 = font3.render("test message", True, GREEN)
+    text4 = font4.render("test message", True, YELLOW)
+
+    #Uses rect in pygame to make rectangles and center them in the middle of the window in a stack
+    t1_rect = text1.get_rect(center=(windowWidth//2, 150)) 
+    t2_rect = text2.get_rect(center=(windowWidth//2, 200)) 
+    t3_rect = text3.get_rect(center=(windowWidth//2, 250)) 
+    t4_rect = text4.get_rect(center=(windowWidth//2, 300))
+    #PUT YOUR DRAWING, IMAGE PLACEMENT, BLIT ETC.. COMMANDS HERE FOR EACH GAMESTATE'''
+    #makes the blit to show each text and the rectangle for them
+    window.blit(text1, t1_rect) 
+    window.blit(text2, t2_rect) 
+    window.blit(text3, t3_rect) 
+    window.blit(text4, t4_rect)
     # *********SHOW THE FRAME TO THE USER**********
     pygame.display.flip()
     clock.tick(60) #Force frame rate to 60fps or lower
 
 
 pygame.quit()
-
-

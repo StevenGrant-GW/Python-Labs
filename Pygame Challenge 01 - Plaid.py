@@ -65,35 +65,34 @@
 import pygame
 pygame.init()
 
-# *********SETUP**********
-
 windowWidth = 500
 windowHeight = 500
 window = pygame.display.set_mode((windowWidth, windowHeight))
-clock = pygame.time.Clock()  #will allow us to set framerate
+clock = pygame.time.Clock()
 
-# *********GAME LOOP**********
+RED = (255, 0, 0, 150)
+BLUE = (0, 0, 255, 120)
+
+plaid_window = pygame.Surface((windowWidth, windowHeight), pygame.SRCALPHA)
+
 while True:
-    # *********EVENTS**********
-    ev = pygame.event.poll()    # Look for any event
-    if ev.type == pygame.QUIT:  # windowow close button clicked?
-        break                   #   ... leave game loop
-   
-    #PUT YOUR MOUSE/KEYBOARD EVENTS HERE
-   
-    # *********GAME LOGIC**********
-    
-    #PUT YOUR GAME LOGIN HERE FOR EACH GAMESTATE
-    
-    # *********DRAW THE FRAME**********
+    ev = pygame.event.poll()
+    if ev.type == pygame.QUIT:
+        break
 
-    #PUT YOUR DRAWING, IMAGE PLACEMENT, BLIT ETC.. COMMANDS HERE FOR EACH GAMESTATE'''
+    window.fill((255, 255, 255))
 
-    # *********SHOW THE FRAME TO THE USER**********
+    # clear the plaid surface so it doesn’t stay black
+    plaid_window.fill((0, 0, 0, 0))
+
+    for x in range(0, windowWidth, 50):
+        pygame.draw.line(plaid_window, RED, (x, 0), (x, windowHeight), 5)
+
+    for y in range(0, windowHeight, 50):
+        pygame.draw.line(plaid_window, BLUE, (0, y), (windowWidth, y), 10)
+
+    window.blit(plaid_window, (0, 0))
     pygame.display.flip()
-    clock.tick(60) #Force frame rate to 60fps or lower
-
+    clock.tick(60)
 
 pygame.quit()
-
-
