@@ -65,32 +65,38 @@
 import pygame
 pygame.init()
 
+#Generate the window and set the clock
 windowWidth = 500
 windowHeight = 500
 window = pygame.display.set_mode((windowWidth, windowHeight))
 clock = pygame.time.Clock()
 
+#add the variables for the colors
 RED = (255, 0, 0, 150)
 BLUE = (0, 0, 255, 120)
 
+#make the surface of the window able to use alpha colors
 plaid_window = pygame.Surface((windowWidth, windowHeight), pygame.SRCALPHA)
 
 while True:
     ev = pygame.event.poll()
     if ev.type == pygame.QUIT:
         break
-
+    #fill the window with white so the colors stand out
     window.fill((255, 255, 255))
 
     # clear the plaid surface so it doesn’t stay black
     plaid_window.fill((0, 0, 0, 0))
 
+    #Draw the red lines every 50 pixels going right
     for x in range(0, windowWidth, 50):
         pygame.draw.line(plaid_window, RED, (x, 0), (x, windowHeight), 5)
-
+    
+    #Draw the blue lines going down every 50 pixels
     for y in range(0, windowHeight, 50):
         pygame.draw.line(plaid_window, BLUE, (0, y), (windowWidth, y), 10)
 
+    #generate the Blit for the plaid colors
     window.blit(plaid_window, (0, 0))
     pygame.display.flip()
     clock.tick(60)
